@@ -18,11 +18,14 @@ namespace CUESYSv._01
         // menu is shown when software ran, this allows modification of customer entries before login - not secure
         // devlog out of sync with actions
         // autoscroll devlogs
+        // need to hide menu bar on start (good for debug though)
         ///// NOTES END ////////////////////////////////////////////////////////////
 
 
         ///// VARIABLES START //////////////////////////////////////////////////////
         dbConn mysqlConn = new dbConn();
+        private string varFloor;
+        private string varRoom;
         ///// VARIABLES END ////////////////////////////////////////////////////////
 
         ///// METHODS START ////////////////////////////////////////////////////////
@@ -107,8 +110,7 @@ namespace CUESYSv._01
                     Application.Exit();
                     break;
                 default:
-                    devLogs("resetControls default case triggered");
-                    MessageBox.Show("default");
+                    devLogs("resetControls default case triggered, no controls visible");
                     break;
             }
             devLogs("Focus changed to " + newFocus);
@@ -120,6 +122,45 @@ namespace CUESYSv._01
             {
                 dgRoomBookingsSummary.DataSource = mysqlConn.qry(returnWhat).Tables[0];
             }
+        }
+        public void createBooking(string room)
+        {
+            resetControls("");
+            switch (cbFloor.Text)
+            {
+                case "Ground":
+                    varFloor = "G";
+                    break;
+                case "First":
+                    varFloor = "1";
+                    break;
+                case "Second":
+                    varFloor = "2";
+                    break;
+                case "Third":
+                    varFloor = "3";
+                    break;
+                case "Fourth":
+                    varFloor = "4";
+                    break;
+                default:
+                    break;
+            }
+            lbBookingInfo.Visible = true;
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            tbCustomer.Visible = true;
+            mcDate.Visible = true;
+            tbTime.Visible = true;
+            tbCost.Visible = true;
+            cbPaid.Visible = true;
+            btBook.Visible = true;
+            mcDate.MaxSelectionCount = 1;
+            lbBookingInfo.Text = cbBuilding.Text + " - " + varFloor + room;
+            varRoom = room;
         }
         ///// METHODS END //////////////////////////////////////////////////////////
 
@@ -146,8 +187,6 @@ namespace CUESYSv._01
         }
 
         ///// EVENTS START /////////////////////////////////////////////////////////
-
-
         private void timeClock_Tick(object sender, EventArgs e)
         {//Timer to control clock
             lbClockTime.Text = DateTime.Now.ToString("HH:mm");
@@ -252,57 +291,49 @@ namespace CUESYSv._01
 
         private void btRoomA_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "1");
-            newOrder.ShowDialog();
+            createBooking("1");
             devLogs("room a clicked");
         }
 
         private void btRoomB_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "2");
-            newOrder.ShowDialog();
+            createBooking("2");
             devLogs("room b clicked");
         }
 
         private void btRoomC_Click(object sender, EventArgs e)
-        { 
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "3");
-            newOrder.ShowDialog();
+        {
+            createBooking("3");
             devLogs("room c clicked");
         }
 
         private void btRoomD_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "4");
-            newOrder.ShowDialog();
+            createBooking("4");
             devLogs("room d clicked");
         }
 
         private void btRoomE_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "5");
-            newOrder.ShowDialog();
+            createBooking("5");
             devLogs("room e clicked");
         }
 
         private void btRoomF_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "6");
-            newOrder.ShowDialog();
+            createBooking("6");
             devLogs("room f clicked");
         }
 
         private void btRoomG_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "7");
-            newOrder.ShowDialog();
+            createBooking("7");
             devLogs("room g clicked");
         }
 
         private void btRoomH_Click(object sender, EventArgs e)
         {
-            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "8");
-            newOrder.ShowDialog();
+            createBooking("8");
             devLogs("room h clicked");
         }
 
@@ -353,14 +384,18 @@ namespace CUESYSv._01
             }
         }
 
-
-
-
-
+        private void btBook_Click(object sender, EventArgs e)
+        {
+            string varDateTime = mcDate.SelectionRange.Start.ToString("yyyy-MM-dd") + " " + tbTime.Text + ":00"; ;
+            string varPaid;
+            if (cbPaid.Checked == true) { varPaid = "Y"; }
+            else { varPaid = "N"; }
+            if (mysqlConn.connOpen() == true)
+            {
+                mysqlConn.insertBooking(tbCustomer.Text, cbBuilding.Text, varFloor, varRoom, varDateTime, tbCost.Text, varPaid);
+            }
+            resetControls("landing");
+        }
         ///// EVENTS END ///////////////////////////////////////////////////////////
-
-
-
-
     }
 }

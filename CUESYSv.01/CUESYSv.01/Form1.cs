@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using MySql.Data;
-using MySql;
-using MySql.Data.MySqlClient;
 
 namespace CUESYSv._01
 {
@@ -31,12 +23,7 @@ namespace CUESYSv._01
 
         ///// VARIABLES START //////////////////////////////////////////////////////
         public int daysToView = 5;//Number of days ahead bookings are shown on landing page
-
-
-        booking booking = new booking();
-        
         dbConn mysqlConn = new dbConn();
-        
         ///// VARIABLES END ////////////////////////////////////////////////////////
 
 
@@ -60,9 +47,9 @@ namespace CUESYSv._01
             try
             {
                 mysqlConn.varConfigServer = "ac8453.cucstudents.org";
-                mysqlConn.varConfigDatabase = "ac8453_CRM119OCT2018";
-                mysqlConn.varConfigUser = "ac8453_crmdemo";
-                mysqlConn.varConfigPass = "Password123!!";
+                mysqlConn.varConfigDatabase = "ac8453_CUEsys";
+                mysqlConn.varConfigUser = "ac8453_CUEDadmin";
+                mysqlConn.varConfigPass = "Password123!";
                 return true;
             }
             catch { return false; }
@@ -84,7 +71,7 @@ namespace CUESYSv._01
                     break;
                 case "landing":
                     dgRoomBookingsSummary.Visible = true;
-                    dbReturn("RoomBookingsSummary");
+                    dbReturn("SELECT * FROM `tblBookings` WHERE `bookingDateTime` >= CURDATE()");
                     break;
                 case "Book Room":
                     panFloorLayout.Visible = true;
@@ -122,26 +109,10 @@ namespace CUESYSv._01
                     btCustSave.Visible = true;
                     lbCustTitle.Text = "Create Customer";
                     break;
-                case "edit customer":
-                    //return customer details from database
-                    lbCustAdd1.Visible = true;
-                    lbCustAdd2.Visible = true;
-                    lbCustContact.Visible = true;
-                    lbCustEmail.Visible = true;
-                    lbCustPostcode.Visible = true;
-                    lbCustTel.Visible = true;
-                    lbCustTitle.Visible = true;
-                    lbCustTownCity.Visible = true;
-                    tbCustAdd1.Visible = true;
-                    tbCustAdd2.Visible = true;
-                    tbCustContact.Visible = true;
-                    tbCustEmail.Visible = true;
-                    tbCustPostcode.Visible = true;
-                    tbCustTel.Visible = true;
-                    tbCustTownCity.Visible = true;
-                    btCustDelete.Visible = true;
-                    btCustUpdate.Visible = true;
-                    lbCustTitle.Text = "Edit / Delete Customer";
+                case "view customers":
+                    //show all customers
+                    dgRoomBookingsSummary.Visible = true;
+                    dbReturn("SELECT * FROM `tblCustomer`");
                     break;
                 case "Exit":
                     Application.Exit();
@@ -155,18 +126,10 @@ namespace CUESYSv._01
         }
         public void dbReturn(string returnWhat)
         {
-            switch (returnWhat)
+            devLogs(returnWhat + " sql run");
+            if (mysqlConn.connOpen() == true)
             {
-                case "RoomBookingsSummary":
-                    devLogs("dbReturn RoomBookingsSummary case triggered");
-                    if (mysqlConn.connOpen() == true)
-                    {
-                        dgRoomBookingsSummary.DataSource = mysqlConn.qry(returnWhat).Tables[0]; devLogs("dgRoomBookingsSummary filled with dataset");
-                    }
-                    break;
-                default:
-                    devLogs("dbReturn default case triggered");
-                    break;
+                dgRoomBookingsSummary.DataSource = mysqlConn.qry(returnWhat).Tables[0];
             }
         }
         ///// METHODS END //////////////////////////////////////////////////////////
@@ -305,53 +268,83 @@ namespace CUESYSv._01
 
         private void btRoomA_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room a Clicked");devLogs("room a clicked");
-            booking.newBooking(cbBuilding.SelectedText, cbFloor.SelectedText, "A");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "1");
+            newOrder.ShowDialog();
+            devLogs("room a clicked");
         }
 
         private void btRoomB_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room b Clicked"); devLogs("room b clicked");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "2");
+            newOrder.ShowDialog();
+            devLogs("room b clicked");
         }
 
         private void btRoomC_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Room c Clicked"); devLogs("room c clicked");
+        { 
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "3");
+            newOrder.ShowDialog();
+            devLogs("room c clicked");
         }
 
         private void btRoomD_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room d Clicked"); devLogs("room d clicked");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "4");
+            newOrder.ShowDialog();
+            devLogs("room d clicked");
         }
 
         private void btRoomE_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room e Clicked"); devLogs("room e clicked");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "5");
+            newOrder.ShowDialog();
+            devLogs("room e clicked");
         }
 
         private void btRoomF_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room f Clicked"); devLogs("room f clicked");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "6");
+            newOrder.ShowDialog();
+            devLogs("room f clicked");
         }
 
         private void btRoomG_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room g Clicked"); devLogs("room g clicked");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "7");
+            newOrder.ShowDialog();
+            devLogs("room g clicked");
         }
 
         private void btRoomH_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Room h Clicked"); devLogs("room h clicked");
+            NewOrder newOrder = new NewOrder(cbBuilding.Text, cbFloor.Text, "8");
+            newOrder.ShowDialog();
+            devLogs("room h clicked");
         }
 
         private void createCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             resetControls("create customer"); devLogs("create customer request");
         }
-
-        private void editDeleteCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void viewBookingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            resetControls("edit customer"); devLogs("edit customer request");
+            resetControls("landing"); devLogs("show bookings");
+        }
+
+        private void viewCustomersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            resetControls("view customers"); devLogs("show customers");
+        }
+
+        private void btCustSave_Click(object sender, EventArgs e)
+        {
+            devLogs("insert new customer");
+            if (mysqlConn.connOpen() == true)
+            {
+                mysqlConn.insertCustomer(tbCustContact.Text, tbCustEmail.Text, tbCustTel.Text, tbCustAdd1.Text, tbCustAdd2.Text, tbCustTownCity.Text, tbCustPostcode.Text);
+            }
+            tbCustContact.Text = tbCustEmail.Text = tbCustTel.Text = tbCustAdd1.Text = tbCustAdd2.Text = tbCustTownCity.Text = tbCustPostcode.Text = "";
         }
 
 

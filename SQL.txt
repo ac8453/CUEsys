@@ -1,0 +1,27 @@
+CREATE TABLE `tblCustomer` ( 
+`custID` INT NOT NULL AUTO_INCREMENT , 
+`custContact` VARCHAR(100) NOT NULL , 
+`custEmail` VARCHAR(100) NOT NULL , 
+`custTel` VARCHAR(20) NOT NULL , 
+`custAddr1` VARCHAR(200) NOT NULL , 
+`custAddr2` VARCHAR(200) NOT NULL , 
+`custTownCity` VARCHAR(50) NOT NULL , 
+`custPostcode` VARCHAR(10) NOT NULL , 
+PRIMARY KEY (`custID`)
+);
+
+INSERT INTO `tblCustomer` (`custID`, `custContact`, `custEmail`, `custTel`, `custAddr1`, `custAddr2`, `custTownCity`, `custPostcode`) VALUES (NULL, 'test', 'test', 'test', 'test', 'test', 'test', 'test');
+
+CREATE TABLE `tblBookings` ( 
+`bookingID` INT NOT NULL AUTO_INCREMENT , 
+`custContact` VARCHAR(100) NOT NULL , 
+`bookingBuilding` VARCHAR(50) NOT NULL , 
+`bookingFloor` VARCHAR(1) NOT NULL , 
+`bookingRoom` TINYINT(2) NOT NULL , 
+`bookingDateTime` DATETIME NOT NULL , 
+`bookingCost` DECIMAL(5,2) NOT NULL , 
+`bookingPaid` VARCHAR(1) NOT NULL DEFAULT '0' , 
+PRIMARY KEY (`bookingID`)
+);
+
+INSERT INTO `tblBookings` (`bookingID`, `custContact`, `bookingBuilding`, `bookingFloor`, `bookingRoom`, `bookingDateTime`, `bookingCost`, `bookingPaid`) VALUES (NULL, 'test', 'test', '0', '99', '2018-12-25 12:30:30', '123.45', '0');

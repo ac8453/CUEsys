@@ -48,9 +48,10 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editDeleteCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bookRoomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewBookingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btRoomB = new System.Windows.Forms.Button();
             this.panFloorLayout = new System.Windows.Forms.Panel();
             this.btRoomG = new System.Windows.Forms.Button();
@@ -155,29 +156,29 @@
             // 
             this.lbClockSeconds.AutoSize = true;
             this.lbClockSeconds.BackColor = System.Drawing.Color.Transparent;
-            this.lbClockSeconds.Font = new System.Drawing.Font("Minion Pro", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClockSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbClockSeconds.Location = new System.Drawing.Point(122, 23);
             this.lbClockSeconds.Name = "lbClockSeconds";
-            this.lbClockSeconds.Size = new System.Drawing.Size(0, 11);
+            this.lbClockSeconds.Size = new System.Drawing.Size(0, 9);
             this.lbClockSeconds.TabIndex = 0;
             // 
             // lbClockDate
             // 
             this.lbClockDate.AutoSize = true;
             this.lbClockDate.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbClockDate.Font = new System.Drawing.Font("Minion Pro Med", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClockDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbClockDate.Location = new System.Drawing.Point(142, 0);
             this.lbClockDate.Name = "lbClockDate";
-            this.lbClockDate.Size = new System.Drawing.Size(0, 18);
+            this.lbClockDate.Size = new System.Drawing.Size(0, 16);
             this.lbClockDate.TabIndex = 2;
             // 
             // lbClockTime
             // 
             this.lbClockTime.AutoSize = true;
-            this.lbClockTime.Font = new System.Drawing.Font("Minion Pro", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbClockTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbClockTime.Location = new System.Drawing.Point(65, 23);
             this.lbClockTime.Name = "lbClockTime";
-            this.lbClockTime.Size = new System.Drawing.Size(0, 32);
+            this.lbClockTime.Size = new System.Drawing.Size(0, 29);
             this.lbClockTime.TabIndex = 1;
             // 
             // timeClock
@@ -242,7 +243,7 @@
             // 
             this.customerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createCustomerToolStripMenuItem,
-            this.editDeleteCustomerToolStripMenuItem});
+            this.viewCustomersToolStripMenuItem});
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
             this.customerToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.customerToolStripMenuItem.Text = "Customers";
@@ -250,21 +251,22 @@
             // createCustomerToolStripMenuItem
             // 
             this.createCustomerToolStripMenuItem.Name = "createCustomerToolStripMenuItem";
-            this.createCustomerToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.createCustomerToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.createCustomerToolStripMenuItem.Text = "Create Customer";
             this.createCustomerToolStripMenuItem.Click += new System.EventHandler(this.createCustomerToolStripMenuItem_Click);
             // 
-            // editDeleteCustomerToolStripMenuItem
+            // viewCustomersToolStripMenuItem
             // 
-            this.editDeleteCustomerToolStripMenuItem.Name = "editDeleteCustomerToolStripMenuItem";
-            this.editDeleteCustomerToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.editDeleteCustomerToolStripMenuItem.Text = "Edit/Delete Customer";
-            this.editDeleteCustomerToolStripMenuItem.Click += new System.EventHandler(this.editDeleteCustomerToolStripMenuItem_Click);
+            this.viewCustomersToolStripMenuItem.Name = "viewCustomersToolStripMenuItem";
+            this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.viewCustomersToolStripMenuItem.Text = "View Customers";
+            this.viewCustomersToolStripMenuItem.Click += new System.EventHandler(this.viewCustomersToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bookRoomToolStripMenuItem});
+            this.bookRoomToolStripMenuItem,
+            this.viewBookingsToolStripMenuItem});
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.roomsToolStripMenuItem.Text = "Rooms";
@@ -272,9 +274,16 @@
             // bookRoomToolStripMenuItem
             // 
             this.bookRoomToolStripMenuItem.Name = "bookRoomToolStripMenuItem";
-            this.bookRoomToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.bookRoomToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.bookRoomToolStripMenuItem.Text = "Book Room";
             this.bookRoomToolStripMenuItem.Click += new System.EventHandler(this.bookRoomToolStripMenuItem_Click);
+            // 
+            // viewBookingsToolStripMenuItem
+            // 
+            this.viewBookingsToolStripMenuItem.Name = "viewBookingsToolStripMenuItem";
+            this.viewBookingsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.viewBookingsToolStripMenuItem.Text = "View Bookings";
+            this.viewBookingsToolStripMenuItem.Click += new System.EventHandler(this.viewBookingsToolStripMenuItem_Click);
             // 
             // btRoomB
             // 
@@ -552,6 +561,7 @@
             this.btCustSave.TabIndex = 28;
             this.btCustSave.Text = "Save";
             this.btCustSave.UseVisualStyleBackColor = true;
+            this.btCustSave.Click += new System.EventHandler(this.btCustSave_Click);
             // 
             // btCustUpdate
             // 
@@ -655,7 +665,6 @@
         private System.Windows.Forms.ComboBox cbFloor;
         private System.Windows.Forms.ComboBox cbBuilding;
         private System.Windows.Forms.ToolStripMenuItem createCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editDeleteCustomerToolStripMenuItem;
         private System.Windows.Forms.Label lbCustContact;
         private System.Windows.Forms.TextBox tbCustContact;
         private System.Windows.Forms.TextBox tbCustEmail;
@@ -674,6 +683,8 @@
         private System.Windows.Forms.Button btCustSave;
         private System.Windows.Forms.Button btCustUpdate;
         private System.Windows.Forms.Button btCustDelete;
+        private System.Windows.Forms.ToolStripMenuItem viewBookingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewCustomersToolStripMenuItem;
     }
 }
 

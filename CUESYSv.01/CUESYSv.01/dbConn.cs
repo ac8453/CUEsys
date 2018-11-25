@@ -70,7 +70,32 @@ namespace CUESYSv._01
             connClose();
             return ds;
         }
-
-        
+        public void insertCustomer(string custContact, string custEmail, string custTel, string custAddr1, string custAddr2, string custTownCity, string custPostcode) {
+            MySqlCommand comm = conn.CreateCommand();
+            comm.CommandText = "INSERT INTO `tblCustomer` (`custContact`, `custEmail`, `custTel`, `custAddr1`, `custAddr2`, `custTownCity`, `custPostcode`) VALUES (@custContact, @custEmail, @custTel, @custAddr1, @custAddr2, @custTownCity, @custPostcode);";
+            comm.Parameters.AddWithValue("@custContact", custContact);
+            comm.Parameters.AddWithValue("@custEmail", custEmail);
+            comm.Parameters.AddWithValue("@custTel", custTel);
+            comm.Parameters.AddWithValue("@custAddr1", custAddr1);
+            comm.Parameters.AddWithValue("@custAddr2", custAddr2);
+            comm.Parameters.AddWithValue("@custTownCity", custTownCity);
+            comm.Parameters.AddWithValue("@custPostcode", custPostcode);
+            comm.ExecuteNonQuery();
+            connClose();
+        }
+        public void insertBooking(string custContact, string bookingBuilding, string bookingFloor, string bookingRoom, string bookingDateTime, string bookingCost, string bookingPaid)
+        {
+            MySqlCommand comm = conn.CreateCommand();
+            comm.CommandText = "INSERT INTO `tblBookings` (`custContact`, `bookingBuilding`, `bookingFloor`, `bookingRoom`, `bookingDateTime`, `bookingCost`, `bookingPaid`) VALUES (@custContact, @bookingBuilding, @bookingFloor, @bookingRoom, @bookingDateTime, @bookingCost, @bookingPaid);";
+            comm.Parameters.AddWithValue("@custContact", custContact);
+            comm.Parameters.AddWithValue("@bookingBuilding", bookingBuilding);
+            comm.Parameters.AddWithValue("@bookingFloor", bookingFloor);
+            comm.Parameters.AddWithValue("@bookingRoom", bookingRoom);
+            comm.Parameters.AddWithValue("@bookingDateTime", bookingDateTime);
+            comm.Parameters.AddWithValue("@bookingCost", bookingCost);
+            comm.Parameters.AddWithValue("@bookingPaid", bookingPaid);
+            comm.ExecuteNonQuery();
+            connClose();
+        }
     }
 }

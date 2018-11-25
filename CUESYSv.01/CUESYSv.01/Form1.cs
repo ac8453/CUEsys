@@ -22,19 +22,8 @@ namespace CUESYSv._01
 
 
         ///// VARIABLES START //////////////////////////////////////////////////////
-        public int daysToView = 5;//Number of days ahead bookings are shown on landing page
         dbConn mysqlConn = new dbConn();
         ///// VARIABLES END ////////////////////////////////////////////////////////
-
-
-
-
-
-        //  devLogs("xxxxxxxxx");
-
-
-
-
 
         ///// METHODS START ////////////////////////////////////////////////////////
         public void devLogs(string logItem)
@@ -194,11 +183,6 @@ namespace CUESYSv._01
             }
         }
 
-        private void dgRoomBookingsSummary_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string dgRoomBookingsSummarySelected = Convert.ToString(dgRoomBookingsSummary.CurrentRow.Cells[0].Value);devLogs("dgRoomBookingsSummary cell "+ dgRoomBookingsSummarySelected + " selected");
-        }
-
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {//Generic keyboard shortcuts
             if (keyData == (Keys.Alt | Keys.L))
@@ -345,6 +329,28 @@ namespace CUESYSv._01
                 mysqlConn.insertCustomer(tbCustContact.Text, tbCustEmail.Text, tbCustTel.Text, tbCustAdd1.Text, tbCustAdd2.Text, tbCustTownCity.Text, tbCustPostcode.Text);
             }
             tbCustContact.Text = tbCustEmail.Text = tbCustTel.Text = tbCustAdd1.Text = tbCustAdd2.Text = tbCustTownCity.Text = tbCustPostcode.Text = "";
+            resetControls("view customers");
+        }
+
+        private void dgRoomBookingsSummary_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgRoomBookingsSummary.Columns[0].Name == "bookingID") {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this booking?", "Delete booking", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    mysqlConn.deleteBooking(Convert.ToString(dgRoomBookingsSummary.CurrentRow.Cells[0].Value));
+                }
+                resetControls("landing");
+            }
+            if (dgRoomBookingsSummary.Columns[0].Name == "custID")
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this customer?", "Delete customer", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    mysqlConn.deleteCustomer(Convert.ToString(dgRoomBookingsSummary.CurrentRow.Cells[0].Value));
+                }
+                resetControls("view customers");
+            }
         }
 
 

@@ -194,7 +194,7 @@
             this.dgRoomBookingsSummary.Name = "dgRoomBookingsSummary";
             this.dgRoomBookingsSummary.Size = new System.Drawing.Size(776, 351);
             this.dgRoomBookingsSummary.TabIndex = 7;
-            this.dgRoomBookingsSummary.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgRoomBookingsSummary_CellClick);
+            this.dgRoomBookingsSummary.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgRoomBookingsSummary_CellMouseDoubleClick);
             // 
             // mainMenu
             // 

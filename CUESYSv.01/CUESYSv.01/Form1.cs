@@ -401,7 +401,39 @@ namespace CUESYSv._01
         {
             if (e.Button == MouseButtons.Right)
             {
-                MessageBox.Show("mouse right");
+                if (dgRoomBookingsSummary.Columns[0].Name == "bookingID")
+                {
+                    //set combo to building
+                    //set combo to floor
+                    //run createBooking with room
+
+                    
+
+                    //cbBuilding.SelectedText = ? cbBuilding;
+                    //cbFloor.SelectedText = ? cbFloor;
+                    //createBooking(?roomNumber);
+                    resetControls("Book Room"); devLogs("edit booking request");//we want to show edit panel for bookings
+                }
+                if (dgRoomBookingsSummary.Columns[0].Name == "custID")
+                {
+                    int custID = Convert.ToInt16(dgRoomBookingsSummary.Rows[e.RowIndex].Cells[0].Value);
+                    string custContact = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    string custEmail = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    string custTel = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    string custAddr1 = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    string custAddr2 = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[5].Value.ToString();
+                    string custTownCity = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[6].Value.ToString();
+                    string custPostcode = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[7].Value.ToString();
+                    tbCustContact.Text = custContact;
+                    tbCustEmail.Text = custEmail;
+                    tbCustTel.Text = custTel;
+                    tbCustAdd1.Text = custAddr1;
+                    tbCustAdd2.Text = custAddr2;
+                    tbCustTownCity.Text = custTownCity;
+                    tbCustPostcode.Text = custPostcode;
+
+                    resetControls("create customer"); devLogs("edit customer request");//we want to show edit panel for customers
+                }
             }
         }
         ///// EVENTS END ///////////////////////////////////////////////////////////

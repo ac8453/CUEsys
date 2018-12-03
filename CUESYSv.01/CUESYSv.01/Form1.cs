@@ -396,6 +396,14 @@ namespace CUESYSv._01
             }
             resetControls("landing");
         }
+
+        private void dgRoomBookingsSummary_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                MessageBox.Show("mouse right");
+            }
+        }
         ///// EVENTS END ///////////////////////////////////////////////////////////
     }
 }

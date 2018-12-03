@@ -206,6 +206,7 @@
             this.dgRoomBookingsSummary.Name = "dgRoomBookingsSummary";
             this.dgRoomBookingsSummary.Size = new System.Drawing.Size(776, 351);
             this.dgRoomBookingsSummary.TabIndex = 7;
+            this.dgRoomBookingsSummary.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgRoomBookingsSummary_CellMouseClick);
             this.dgRoomBookingsSummary.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgRoomBookingsSummary_CellMouseDoubleClick);
             // 
             // mainMenu
@@ -656,7 +657,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(255, 134);
+            this.label1.Location = new System.Drawing.Point(253, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 25);
             this.label1.TabIndex = 37;

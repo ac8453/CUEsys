@@ -26,6 +26,14 @@ namespace CUESYSv._01
         dbConn mysqlConn = new dbConn();
         private string varFloor;
         private string varRoom;
+        private int? custID;
+        private string custContact;
+        private string custEmail;
+        private string custTel;
+        private string custAddr1;
+        private string custAddr2;
+        private string custTownCity;
+        private string custPostcode;
         ///// VARIABLES END ////////////////////////////////////////////////////////
 
         ///// METHODS START ////////////////////////////////////////////////////////
@@ -50,15 +58,16 @@ namespace CUESYSv._01
         public void resetControls(string newFocus)
         {//Hide all controls and only show those needed
             devLogs("resetControls triggered");
-            foreach (Control control in this.Controls) { control.Visible = false; }//Hide all controls
-            lbCueSys.Visible = true;//Show logo
-            panClock.Visible = true;//Show clock panel
-            mainMenu.Visible = true;//Show menu
-            foreach (var clockLbl in panClock.Controls.OfType<Label>()){ clockLbl.Visible = true; };//Show clock in panel
+            panLogin.Visible = false;
+            panCustDetails.Visible = false;
+            panBookingDetails.Visible = false;
+            panFloorLayout.Visible = false;
+            dgRoomBookingsSummary.Visible = false;
+
             switch (newFocus)//Use control statement to selectively show controls based on newFocus argument
             {
                 case "Program started":
-                    lbUserName.Visible = lbUserPass.Visible = tbUserName.Visible = tbUserPass.Visible = btLogin.Visible = true;//make login controls visible
+                    panLogin.Visible = true;
                     devLogs("Login controls visible");
                     break;
                 case "landing":
@@ -67,8 +76,6 @@ namespace CUESYSv._01
                     break;
                 case "Book Room":
                     panFloorLayout.Visible = true;
-                    cbBuilding.Visible = true;
-                    cbFloor.Visible = true;
                     foreach (var x in panFloorLayout.Controls.OfType<Button>())
                     {//Make each button transparent
                         x.Parent = panFloorLayout;
@@ -83,22 +90,7 @@ namespace CUESYSv._01
                     };
                     break;
                 case "create customer":
-                    lbCustAdd1.Visible = true;
-                    lbCustAdd2.Visible = true;
-                    lbCustContact.Visible = true;
-                    lbCustEmail.Visible = true;
-                    lbCustPostcode.Visible = true;
-                    lbCustTel.Visible = true;
-                    lbCustTitle.Visible = true;
-                    lbCustTownCity.Visible = true;
-                    tbCustAdd1.Visible = true;
-                    tbCustAdd2.Visible = true;
-                    tbCustContact.Visible = true;
-                    tbCustEmail.Visible = true;
-                    tbCustPostcode.Visible = true;
-                    tbCustTel.Visible = true;
-                    tbCustTownCity.Visible = true;
-                    btCustSave.Visible = true;
+                    panCustDetails.Visible = true;
                     lbCustTitle.Text = "Create Customer";
                     break;
                 case "view customers":
@@ -146,18 +138,7 @@ namespace CUESYSv._01
                 default:
                     break;
             }
-            lbBookingInfo.Visible = true;
-            label1.Visible = true;
-            label2.Visible = true;
-            label3.Visible = true;
-            label4.Visible = true;
-            label5.Visible = true;
-            tbCustomer.Visible = true;
-            mcDate.Visible = true;
-            tbTime.Visible = true;
-            tbCost.Visible = true;
-            cbPaid.Visible = true;
-            btBook.Visible = true;
+            panBookingDetails.Visible = true;
             mcDate.MaxSelectionCount = 1;
             lbBookingInfo.Text = cbBuilding.Text + " - " + varFloor + room;
             varRoom = room;
@@ -416,14 +397,14 @@ namespace CUESYSv._01
                 }
                 if (dgRoomBookingsSummary.Columns[0].Name == "custID")
                 {
-                    int custID = Convert.ToInt16(dgRoomBookingsSummary.Rows[e.RowIndex].Cells[0].Value);
-                    string custContact = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    string custEmail = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    string custTel = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[3].Value.ToString();
-                    string custAddr1 = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[4].Value.ToString();
-                    string custAddr2 = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[5].Value.ToString();
-                    string custTownCity = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[6].Value.ToString();
-                    string custPostcode = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[7].Value.ToString();
+                    custID = Convert.ToInt16(dgRoomBookingsSummary.Rows[e.RowIndex].Cells[0].Value);
+                    custContact = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    custEmail = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    custTel = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    custAddr1 = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    custAddr2 = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[5].Value.ToString();
+                    custTownCity = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[6].Value.ToString();
+                    custPostcode = dgRoomBookingsSummary.Rows[e.RowIndex].Cells[7].Value.ToString();
                     tbCustContact.Text = custContact;
                     tbCustEmail.Text = custEmail;
                     tbCustTel.Text = custTel;
@@ -433,8 +414,22 @@ namespace CUESYSv._01
                     tbCustPostcode.Text = custPostcode;
 
                     resetControls("create customer"); devLogs("edit customer request");//we want to show edit panel for customers
+                    btCustSave.Visible = false;
+                    btCustUpdate.Visible = true;
                 }
             }
+        }
+
+        private void btCustUpdate_Click(object sender, EventArgs e)
+        {
+            devLogs("update customer number " + custID.ToString());
+            if (mysqlConn.connOpen() == true)
+            {
+                mysqlConn.updateCustomer(tbCustContact.Text, tbCustEmail.Text, tbCustTel.Text, tbCustAdd1.Text, tbCustAdd2.Text, tbCustTownCity.Text, tbCustPostcode.Text, custID.ToString());
+            }
+            tbCustContact.Text = tbCustEmail.Text = tbCustTel.Text = tbCustAdd1.Text = tbCustAdd2.Text = tbCustTownCity.Text = tbCustPostcode.Text = "";
+            custID = null;            custContact = custEmail = custTel = custAddr1 = custAddr2 = custTownCity = custPostcode = "";
+            resetControls("view customers");
         }
         ///// EVENTS END ///////////////////////////////////////////////////////////
     }

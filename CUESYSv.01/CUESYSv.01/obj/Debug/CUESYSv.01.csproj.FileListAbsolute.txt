@@ -1,0 +1,15 @@
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\CUESYSv.01.exe.config
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\CUESYSv.01.exe
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\CUESYSv.01.pdb
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\Google.Protobuf.dll
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\MySql.Data.dll
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\Google.Protobuf.xml
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\bin\Debug\MySql.Data.xml
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv.01.csprojAssemblyReference.cache
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv._01.Form1.resources
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv._01.Properties.Resources.resources
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv.01.csproj.GenerateResource.cache
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv.01.csproj.CoreCompileInputs.cache
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv.01.csproj.CopyComplete
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv.01.exe
+C:\Users\ac8453\Documents\GitHub\CUEsys\CUESYSv.01\CUESYSv.01\obj\Debug\CUESYSv.01.pdb

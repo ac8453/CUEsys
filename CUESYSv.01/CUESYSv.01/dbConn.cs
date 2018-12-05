@@ -98,6 +98,23 @@ namespace CUESYSv._01
             comm.ExecuteNonQuery();
             connClose();
         }
+
+        public void updateCustomer(string custContact, string custEmail, string custTel, string custAddr1, string custAddr2, string custTownCity, string custPostcode, string custID)
+        {
+            MySqlCommand comm = conn.CreateCommand();
+            comm.CommandText = "";//put your update qry here
+            comm.Parameters.AddWithValue("@custContact", custContact);
+            comm.Parameters.AddWithValue("@custEmail", custEmail);
+            comm.Parameters.AddWithValue("@custTel", custTel);
+            comm.Parameters.AddWithValue("@custAddr1", custAddr1);
+            comm.Parameters.AddWithValue("@custAddr2", custAddr2);
+            comm.Parameters.AddWithValue("@custTownCity", custTownCity);
+            comm.Parameters.AddWithValue("@custPostcode", custPostcode);
+            comm.Parameters.AddWithValue("@custID", custID);
+            comm.ExecuteNonQuery();
+            connClose();
+        }
+
         public void deleteBooking(string id)
         {
             connOpen();

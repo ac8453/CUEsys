@@ -1,0 +1,43 @@
+04/12/2018 13:04:44 --- resetControls triggered
+04/12/2018 13:04:44 --- Login controls visible
+04/12/2018 13:04:44 --- Focus changed to Program started
+04/12/2018 13:04:44 --- Program started
+04/12/2018 13:04:50 --- Login button clicked
+04/12/2018 13:04:50 --- resetControls triggered
+04/12/2018 13:04:50 --- SELECT * FROM `tblBookings` WHERE `bookingDateTime` >= CURDATE() sql run
+04/12/2018 13:04:50 --- Focus changed to landing
+04/12/2018 13:04:50 --- Login success for user admin
+04/12/2018 13:04:50 --- enter key detected in tbUserPass
+04/12/2018 13:04:57 --- devlogs viewed
+04/12/2018 13:05:04 --- resetControls triggered
+04/12/2018 13:05:04 --- Focus changed to create customer
+04/12/2018 13:05:04 --- create customer request
+04/12/2018 13:05:07 --- resetControls triggered
+04/12/2018 13:05:07 --- SELECT * FROM `tblCustomer` sql run
+04/12/2018 13:05:07 --- Focus changed to view customers
+04/12/2018 13:05:07 --- show customers
+04/12/2018 13:05:10 --- resetControls triggered
+04/12/2018 13:05:10 --- Focus changed to Book Room
+04/12/2018 13:05:10 --- book room request
+04/12/2018 13:05:12 --- resetControls triggered
+04/12/2018 13:05:12 --- SELECT * FROM `tblBookings` WHERE `bookingDateTime` >= CURDATE() sql run
+04/12/2018 13:05:12 --- Focus changed to landing
+04/12/2018 13:05:12 --- show bookings
+04/12/2018 13:05:13 --- resetControls triggered
+04/12/2018 13:05:13 --- Focus changed to Book Room
+04/12/2018 13:05:13 --- book room request
+04/12/2018 13:05:17 --- resetControls triggered
+04/12/2018 13:05:17 --- resetControls default case triggered, no controls visible
+04/12/2018 13:05:17 --- Focus changed to 
+04/12/2018 13:05:17 --- room d clicked
+04/12/2018 13:05:21 --- resetControls triggered
+04/12/2018 13:05:21 --- SELECT * FROM `tblCustomer` sql run
+04/12/2018 13:05:21 --- Focus changed to view customers
+04/12/2018 13:05:21 --- show customers
+04/12/2018 13:05:24 --- resetControls triggered
+04/12/2018 13:05:24 --- SELECT * FROM `tblCustomer` sql run
+04/12/2018 13:05:24 --- Focus changed to view customers
+04/12/2018 13:05:25 --- resetControls triggered
+04/12/2018 13:05:25 --- Focus changed to create customer
+04/12/2018 13:05:25 --- edit customer request
+04/12/2018 13:05:36 --- update customer number 19
